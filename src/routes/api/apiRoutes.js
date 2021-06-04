@@ -7,7 +7,7 @@ const Post = require('../../models/post');
 // /api/blog gauti visu postus json pavidalu
 // get all posts
 router.get('/', (req, res) => {
-  res.json(blogDb);
+  res.json({ msg: 'yes' });
 });
 
 // create new post
@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
     .save()
     .then((result) => res.json({ msg: 'success', redirect: '/blog' }))
     .catch((err) => res.status(400).json(err.message));
-  // paimam req body duomenis ir su jais sukuriam nauja post ir ikeliam i blogDb
 });
 
 router.delete('/:id', (req, res) => {
