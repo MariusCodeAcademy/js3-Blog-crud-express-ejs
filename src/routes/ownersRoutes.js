@@ -68,8 +68,22 @@ router.post('/delete/:id', (req, res) => {
 
 // edit route
 // /owners/edit/id
-router.get('/edit/:id', (req, res) => {
-  res.send('edit works');
+router.get('/edit/:currentId', (req, res) => {
+  const currentId = req.params.currentId;
+
+  // surasti ir paduoti i renderi owneri kurio id yra currentId
+  Owner.findById(currentId)
+    .then((currentOwner) => {
+      res.render('owners/edit', {
+        title: 'Edit owner',
+        page: 'edit_owner',
+        currentOwner,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).redirect('/owners');
+    });
 });
 // gauti id nurodyto route duomenis ir paduoti i edit view
 // view faile uzpildyti inputus su reiksmem pagal id
