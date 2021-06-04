@@ -10,7 +10,7 @@
     <p class="lead text-muted"><%= post.body %> </p>
     <p class="lead text-muted"><%= post.updatedAt.toLocaleString() %> </p>
     <p>
-      <a href="/single/edit/<%= post._id %>" class="btn btn-primary my-2">Edit</a>
+      <a href="/blog/single/edit/<%= post._id %>" class="btn btn-primary my-2">Edit</a>
       <button data-post-id="<%= post._id %>" id="delete" href="#" class="btn btn-danger my-2"
         >Delete</button
       >

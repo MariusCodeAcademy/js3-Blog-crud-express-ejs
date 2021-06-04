@@ -9,6 +9,7 @@ const PORT = 3000;
 
 const pageRoutes = require('./routes/pagesRoutes');
 const ownersRoutes = require('./routes/ownersRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 const apiRoutes = require('./routes/api/apiRoutes');
 
 // mongoos prisijungimas
@@ -29,16 +30,10 @@ app.set('views', 'src/views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// absurd example
-// app.get('/owner/blog/green/blue', (req, res) => {
-//   res.send('yes it works');
-// });
-
-// pages routes
+// routes use
 app.use('/', pageRoutes);
-
-// owners routes
 app.use('/owners', ownersRoutes);
+app.use('/blog', blogRoutes);
 
 const staticPath = path.join(__dirname, 'static');
 // statine direktorija, css, js, img ir kt statiniam failam
