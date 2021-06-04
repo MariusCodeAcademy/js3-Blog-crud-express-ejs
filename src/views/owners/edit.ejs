@@ -1,0 +1,32 @@
+<%- include('../partials/head.ejs') %> <%- include('../partials/nav.ejs') %>
+
+<main>
+  <h1>Edit owner</h1>
+  <form id="create-post-form" action="/owners/edit" method="POST">
+    <div class="form-group">
+      <label for="name">Your name</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Enter name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Owner</button>
+  </form>
+</main>
+
+<%- include('../partials/footer.ejs') %>
