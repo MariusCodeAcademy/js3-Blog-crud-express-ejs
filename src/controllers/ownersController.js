@@ -20,6 +20,20 @@ const owners_index = (req, res) => {
   // pass owners to view
 }
 
+const owners_single = (req, res) => {
+    // find by id
+    Owner.findById(req.params.id)
+      .then((found) => {
+        res.render('owners/single', {
+          title: 'Single',
+          page: 'single_owner',
+          found,
+        });
+      })
+      .catch((err) => console.error(err));
+  }
+
 module.exports = {
-    owners_index
+    owners_index,
+    owners_single
 }

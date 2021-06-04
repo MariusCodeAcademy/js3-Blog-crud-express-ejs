@@ -9,19 +9,7 @@ const ownersControllers = require('../controllers/ownersController')
 router.get('/', ownersControllers.owners_index);
 
 // get single owner
-router.get('/single/:id', (req, res) => {
-  // find by id
-
-  Owner.findById(req.params.id)
-    .then((found) => {
-      res.render('owners/single', {
-        title: 'Single',
-        page: 'single_owner',
-        found,
-      });
-    })
-    .catch((err) => console.error(err));
-});
+router.get('/single/:id', ownersControllers.owners_single );
 
 // formos parodymo route
 router.get('/new', (req, res) => {
