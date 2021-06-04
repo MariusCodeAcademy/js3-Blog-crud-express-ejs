@@ -3,25 +3,10 @@ const router = express.Router();
 
 const Owner = require('../models/owner');
 
-router.get('/', (req, res) => {
-  // was there a delete
-  console.log(' req.query', req.query);
-  const feedback = req.query;
-  // get all owners from db
-  Owner.find()
-    .sort({ createdAt: -1 })
-    .then((found) => {
-      // generate list items with owners name and email
-      res.render('owners/index', {
-        title: 'Owners',
-        page: 'owners',
-        owners: found,
-        feedback,
-      });
-    })
-    .catch((err) => console.error(err));
-  // pass owners to view
-});
+// load controllers
+const ownersControllers = require('../controllers/ownersController')
+
+router.get('/', ownersControllers.owners_index);
 
 // get single owner
 router.get('/single/:id', (req, res) => {
