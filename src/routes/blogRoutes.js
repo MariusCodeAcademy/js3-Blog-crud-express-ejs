@@ -1,20 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
-
+const blogController = require('../controllers/blogController');
 // blog page
-router.get('/', function (req, res) {
-  // parsisiusti duomenis is db
-  Post.find()
-    .then((posts) => {
-      res.render('blog/blog', {
-        title: 'Our blog',
-        page: 'blog',
-        posts,
-      });
-    })
-    .catch((err) => console.error(err.message));
-});
+router.get('/', blogController.blog_index);
 
 // create blog page /blog/create
 router.get('/create', function (req, res) {
