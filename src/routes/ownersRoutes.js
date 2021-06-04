@@ -18,5 +18,7 @@ router.post('/delete/:id', ownersControllers.owners_delete);
 router.get('/edit/:currentId', ownersControllers.owner_show_edit);
 // edit post save
 router.post('/edit/:id', ownersControllers.owner_edit_save);
+// search owner
+router.get('/search', ownersControllers.owner_seach);
 
 module.exports = router;
