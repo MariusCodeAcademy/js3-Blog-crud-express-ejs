@@ -84,6 +84,12 @@ const owner_edit_save = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+const owner_seach = (req, res) => {
+  // get budu siunciamos formos parametrai yra req.query
+  console.log(req.query);
+  res.send('you are in right place');
+};
+
 module.exports = {
   owners_index,
   owners_single,
@@ -92,4 +98,5 @@ module.exports = {
   owners_delete,
   owner_show_edit,
   owner_edit_save,
+  owner_seach,
 };
