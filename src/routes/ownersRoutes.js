@@ -88,6 +88,13 @@ router.get('/edit/:currentId', (req, res) => {
 // gauti id nurodyto route duomenis ir paduoti i edit view
 // view faile uzpildyti inputus su reiksmem pagal id
 
+router.post('/edit/:id', (req, res) => {
+  Owner.findByIdAndUpdate(req.params.id, req.body)
+    .then((updatedObj) => {
+      res.redirect('/owners?msg=updated&name=' + updatedObj.name);
+    })
+    .catch((err) => console.error(err));
+});
 // naujas routas POST /owners/edit/id
 // atspausdinti konsoleje ir grazinti vartotojui formos duomenis
 

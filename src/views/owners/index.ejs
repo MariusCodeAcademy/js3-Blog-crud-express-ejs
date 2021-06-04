@@ -12,11 +12,11 @@
   <h2>Our owners list <a class="btn btn-info float-right" href="/owners/new">Add Owner</a></h2>
 
   <ol class="list-group">
-    <% owners.forEach(({ _id, name, email, createdAt: date}) => { %>
+    <% owners.forEach(({ _id, name, email, updatedAt: date}) => { %>
     <li class="list-group-item d-flex justify-content-between">
       <div>
         Name: <%= name %> , email: <%= email %> <br />
-        <small class="text-muted"><%= date.toLocaleTimeString() %> </small>
+        <small class="text-muted"><%= date.toLocaleString() %> </small>
       </div>
 
       <div>
