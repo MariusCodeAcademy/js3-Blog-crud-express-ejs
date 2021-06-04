@@ -15,7 +15,7 @@ mainForm.addEventListener('submit', function (event) {
 
   MyFetch.createPost(fdJsonFormat, (ats) => {
     console.log(ats);
-    if (error) {
+    if (ats.error) {
       console.log('Do something about the errror');
     }
     if (ats.redirect) {

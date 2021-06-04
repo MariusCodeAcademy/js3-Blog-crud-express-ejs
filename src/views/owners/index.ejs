@@ -2,12 +2,11 @@
 
 <main>
   <h1>This is the owners page</h1>
-  <% if (locals.result) { %>
-  <div class="alert alert-success" role="alert"> Owner created <%= result.name %> </div>
-  <% } %> <% if (locals.msg) { %>
+  <% if (locals.msg && msg === 'created') { %>
+  <div class="alert alert-success" role="alert"> Owner created, Joy </div>
+  <% } %> <% if (locals.msg && msg === 'deleted') { %>
   <div class="alert alert-danger" role="alert"> Owner Deleted, Sad </div>
   <% } %>
-
   <h2>Our owners list <a class="btn btn-info float-right" href="/owners/new">Add Owner</a></h2>
 
   <ol class="list-group">

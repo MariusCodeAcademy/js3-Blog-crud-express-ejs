@@ -6,17 +6,17 @@ const Owner = require('../models/owner');
 router.get('/', (req, res) => {
   // was there a delete
   console.log(' req.query', req.query);
-  const deleteMsg = req.query.delete;
+  const msg = req.query.msg;
   // get all owners from db
   Owner.find()
-    .sort({ createdAt: 1 })
+    .sort({ createdAt: -1 })
     .then((found) => {
       // generate list items with owners name and email
       res.render('owners/index', {
         title: 'Owners',
         page: 'owners',
         owners: found,
-        msg: deleteMsg,
+        msg,
       });
     })
     .catch((err) => console.error(err));
@@ -54,7 +54,7 @@ router.post('/new', (req, res) => {
   newOwner
     .save()
     .then((result) => {
-      res.redirect('/owners?msg=Success');
+      res.redirect('/owners?msg=created');
     })
     .catch((err) => res.send('Opps did not save', err));
 });
@@ -62,7 +62,7 @@ router.post('/new', (req, res) => {
 // delete form
 router.post('/delete/:id', (req, res) => {
   Owner.findByIdAndDelete(req.params.id)
-    .then((result) => res.redirect('/owners?delete=true'))
+    .then((result) => res.redirect('/owners?msg=deleted'))
     .catch((err) => res.send(`delete failed ${err}`));
 });
 
