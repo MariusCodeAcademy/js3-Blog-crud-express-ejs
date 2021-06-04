@@ -1,74 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
-const Owner = require('../models/owner');
-
 // load controllers
-const ownersControllers = require('../controllers/ownersController')
+const ownersControllers = require('../controllers/ownersController');
 
+// all owners
 router.get('/', ownersControllers.owners_index);
-
 // get single owner
-router.get('/single/:id', ownersControllers.owners_single );
-
+router.get('/single/:id', ownersControllers.owners_single);
 // formos parodymo route
-router.get('/new', (req, res) => {
-  res.render('owners/new', {
-    title: 'Add owner',
-    page: 'owners_new',
-  });
-});
-
+router.get('/new', ownersControllers.owners_show_form);
 // formos apdorojimo routas
-router.post('/new', (req, res) => {
-  console.log(' req.body', req.body);
-
-  const newOwner = new Owner(req.body);
-  newOwner
-    .save()
-    .then((result) => {
-      res.redirect('/owners?msg=created&name=' + result.name);
-    })
-    .catch((err) => res.send('Opps did not save', err));
-});
-
+router.post('/new', ownersControllers.owners_new);
 // delete form
-router.post('/delete/:id', (req, res) => {
-  Owner.findByIdAndDelete(req.params.id)
-    .then((result) => res.redirect('/owners?msg=deleted&name=' + result.name))
-    .catch((err) => res.send(`delete failed ${err}`));
-});
-
+router.post('/delete/:id', ownersControllers.owners_delete);
 // edit route
-// /owners/edit/id
-router.get('/edit/:currentId', (req, res) => {
-  const currentId = req.params.currentId;
-
-  // surasti ir paduoti i renderi owneri kurio id yra currentId
-  Owner.findById(currentId)
-    .then((currentOwner) => {
-      res.render('owners/edit', {
-        title: 'Edit owner',
-        page: 'edit_owner',
-        currentOwner,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).redirect('/owners');
-    });
-});
-// gauti id nurodyto route duomenis ir paduoti i edit view
-// view faile uzpildyti inputus su reiksmem pagal id
-
-router.post('/edit/:id', (req, res) => {
-  Owner.findByIdAndUpdate(req.params.id, req.body)
-    .then((updatedObj) => {
-      res.redirect('/owners?msg=updated&name=' + updatedObj.name);
-    })
-    .catch((err) => console.error(err));
-});
-// naujas routas POST /owners/edit/id
-// atspausdinti konsoleje ir grazinti vartotojui formos duomenis
+router.get('/edit/:currentId', ownersControllers.owner_show_edit);
+// edit post save
+router.post('/edit/:id', ownersControllers.owner_edit_save);
 
 module.exports = router;
