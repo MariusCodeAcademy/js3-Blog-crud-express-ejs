@@ -11,6 +11,7 @@ const pageRoutes = require('./routes/pagesRoutes');
 const ownersRoutes = require('./routes/ownersRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const apiRoutes = require('./routes/api/apiRoutes');
+const apiOwners = require('./routes/api/apiOwners');
 
 // mongoos prisijungimas
 mongoose
@@ -41,5 +42,6 @@ app.use(express.static(staticPath));
 
 // isitraukti api routes ir panaudoti cia kad veiktu
 app.use('/api/blog', apiRoutes);
+app.use('/api/owners', apiOwners);
 // 404 case - kai vartojas ivede psl kurio nera
 app.use((req, res) => res.status(404).send('OOPs Page not found'));
