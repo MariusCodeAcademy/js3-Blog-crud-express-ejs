@@ -9,10 +9,10 @@
   <%- include('_searchForm') %>
 
   <ol class="list-group">
-    <% owners.forEach(({ _id, name, email, updatedAt: date}) => { %>
+    <% if (owners.length > 0 ) { %> <% owners.forEach(({ _id, name, email, updatedAt: date}) => { %>
     <li class="list-group-item d-flex justify-content-between">
       <div>
-        Name: <%= name %> , email: <%= email %> <br />
+        <%= name %> , email: <%= email %> <br />
         <small class="text-muted"><%= date.toLocaleString() %> </small>
       </div>
 
@@ -23,7 +23,11 @@
         </form>
       </div>
     </li>
-    <% }) %>
+    <% }) %> <% } else { %>
+    <div class="alert alert-info"
+      >We have not found any Owners with a name of <strong><%= locals.search || '' %></strong>
+    </div>
+    <% } %>
   </ol>
 </main>
 

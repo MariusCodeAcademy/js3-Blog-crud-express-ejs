@@ -86,8 +86,20 @@ const owner_edit_save = (req, res) => {
 
 const owner_seach = (req, res) => {
   // get budu siunciamos formos parametrai yra req.query
-  console.log(req.query);
-  res.send('you are in right place');
+  console.log(req.query.searchTerm);
+
+  const searchRegex = new RegExp(req.query.searchTerm, 'i');
+
+  Owner.find({ name: searchRegex })
+    .then((found) => {
+      res.render('owners/index', {
+        title: 'Owners',
+        page: 'owners',
+        owners: found,
+        search: req.query.searchTerm,
+      });
+    })
+    .catch((err) => console.error(err));
 };
 
 module.exports = {
