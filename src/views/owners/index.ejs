@@ -6,6 +6,8 @@
 
   <h2>Our owners list <a class="btn btn-info float-right" href="/owners/new">Add Owner</a></h2>
 
+  <%- include('_searchForm') %>
+
   <ol class="list-group">
     <% owners.forEach(({ _id, name, email, updatedAt: date}) => { %>
     <li class="list-group-item d-flex justify-content-between">
