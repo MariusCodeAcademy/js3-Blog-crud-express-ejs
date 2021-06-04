@@ -2,13 +2,8 @@
 
 <main>
   <h1>This is the owners page</h1>
-  <% if (locals.feedback && feedback.msg === 'created') { %>
-  <div class="alert alert-success" role="alert"> Owner <%= feedback.name %> created, Joy </div>
-  <% } %> <% if (locals.feedback && feedback.msg === 'deleted') { %>
-  <div class="alert alert-danger" role="alert">
-    Owner <strong><%= feedback.name %></strong> was Deleted, Sad
-  </div>
-  <% } %>
+  <%- include('_msg') %>
+
   <h2>Our owners list <a class="btn btn-info float-right" href="/owners/new">Add Owner</a></h2>
 
   <ol class="list-group">
