@@ -1,3 +1,5 @@
+const House = require('../models/house')
+
 const house_new = (req, res) => {
   const ownersId = req.params.ownersId
   const formArr = [
@@ -15,12 +17,20 @@ const house_new = (req, res) => {
 
 const house_new_post = (req, res) => {
   const oId = req.params.oId  
-
+  console.log(req.body);
+  const houseDetails = {...req.body, ownersId: oId}
   // sukurti nauja house 
+  const newHouse = new House(houseDetails);
+
+  newHouse.save() 
+    .then(savedHouse => console.log(' savedHouse', savedHouse))
+    .catch((err) => console.error(err))
 
   // redirect i to owners page
-  
-  res.json({body: req.body, oId})
+
+  // sukurti paprasta html namo atvaizdavimui 
+
+  res.json(houseDetails)
 }
 
 module.exports = {
