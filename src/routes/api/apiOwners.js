@@ -1,8 +1,25 @@
 const express = require('express');
 const router = express.Router();
 
+const Owner = require('../../models/owner');
+
 router.get('/search', (req, res) => {
   res.json({ seaching: 'for something' });
+});
+
+router.post('/search', (req, res) => {
+  const searchTerm = req.body.search;
+
+  const searchRegex = new RegExp(searchTerm, 'i');
+
+  Owner.find({ name: searchRegex })
+    .then((found) => {
+      res.json({ searchFor: req.body.search, found });
+    })
+    .catch((err) => console.error(err));
+  // gauti visus ownerius
+
+  //kurie atitnika search term
 });
 
 // 1. prisijungiam js faila prie owners index
