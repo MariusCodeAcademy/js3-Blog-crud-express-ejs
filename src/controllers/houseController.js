@@ -23,14 +23,12 @@ const house_new_post = (req, res) => {
   const newHouse = new House(houseDetails);
 
   newHouse.save() 
-    .then(savedHouse => console.log(' savedHouse', savedHouse))
+    .then((_) => res.redirect(`/owners/single/${oId}`))
     .catch((err) => console.error(err))
 
   // redirect i to owners page
 
   // sukurti paprasta html namo atvaizdavimui 
-
-  res.json(houseDetails)
 }
 
 module.exports = {

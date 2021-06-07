@@ -1,5 +1,6 @@
 // owners_index owners_single ...
 const Owner = require('../models/owner');
+const House = require('../models/house');
 
 const owners_index = (req, res) => {
   //   console.log(' req.query', req.query);
@@ -21,16 +22,24 @@ const owners_index = (req, res) => {
 };
 
 const owners_single = (req, res) => {
-  // find by id
-  Owner.findById(req.params.id)
-    .then((found) => {
-      res.render('owners/single', {
-        title: 'Single',
-        page: 'single_owner',
-        found,
-      });
-    })
+  // gauti namus
+  House.find()
+    .then((found) => findOwner(found))
     .catch((err) => console.error(err));
+  // find by id
+  function findOwner(houses) {
+    console.log(' houses', houses);
+    Owner.findById(req.params.id)
+      .then((found) => {
+        res.render('owners/single', {
+          title: 'Single',
+          page: 'single_owner',
+          found,
+          houses,
+        });
+      })
+      .catch((err) => console.error(err));
+  }
 };
 
 const owners_show_form = (req, res) => {
