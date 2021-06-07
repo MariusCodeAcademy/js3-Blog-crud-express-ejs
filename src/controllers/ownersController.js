@@ -21,29 +21,25 @@ const owners_index = (req, res) => {
   // pass owners to view
 };
 
-const owners_single = (req, res) => {
+const owners_single = async (req, res) => {
   // gauti namus
   const currentOwnerId = req.params.id;
 
   // ownersId === currentOwnerId atrenkam tik
-  House.find({ ownersId: currentOwnerId })
-    .exec()
-    .then((found) => findOwner(found))
-    .catch((err) => console.error(err));
 
-  // find by id
-  function findOwner(houses) {
-    console.log(' houses', houses);
-    Owner.findById(currentOwnerId)
-      .then((found) => {
-        res.render('owners/single', {
-          title: 'Single',
-          page: 'single_owner',
-          found,
-          houses,
-        });
-      })
-      .catch((err) => console.error(err));
+  try {
+    const houses = await House.find({ ownersId: currentOwnerId }).exec();
+    const currentOwner = await Owner.findById(currentOwnerId);
+
+    res.render('owners/single', {
+      title: 'Single',
+      page: 'single_owner',
+      found: currentOwner,
+      houses,
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
   }
 };
 
