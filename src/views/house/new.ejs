@@ -1,7 +1,7 @@
 <%- include('../partials/head.ejs') %> <%- include('../partials/nav.ejs') %>
 <h1>Add new house</h1>
 
-<form action="/house/new" method="post">
+<form action="/house/new/<%= oId %> " method="post">
     <% formArr.forEach(({name, label, rq, inputType}) => { %>
         <%- include('_formField', {name, label, rq, inputType}) %> 
     <% }) %>
