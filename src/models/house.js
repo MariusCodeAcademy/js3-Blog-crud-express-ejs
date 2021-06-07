@@ -11,7 +11,7 @@ const houseSchema = new Schema({
     type: String,
     required: true,
   },
-  Town: {
+  town: {
     type: String,
     required: true,
   },

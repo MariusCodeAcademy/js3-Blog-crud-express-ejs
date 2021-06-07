@@ -1,0 +1,10 @@
+<div class="form-group">
+  <label for="<%= name %>"><%= label %> </label>
+  <input 
+  <%= locals.rq || '' %> 
+  type="<%= locals.inputType || 'text' %>" 
+  class="form-control" 
+  id="<%=
+  name %>" name="<%= name %>" 
+  placeholder="Enter <%= name %>" />
+</div>

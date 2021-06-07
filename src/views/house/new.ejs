@@ -1,4 +1,11 @@
 <%- include('../partials/head.ejs') %> <%- include('../partials/nav.ejs') %>
 <h1>Add new house</h1>
+
+<form action="/house/new" method="post">
+    <% formArr.forEach(({name, label, rq, inputType}) => { %>
+        <%- include('_formField', {name, label, rq, inputType}) %> 
+    <% }) %>
+    <button class="btn btn-info" type="submit">Add new house</button>
+</form>
 <!-- /house/new/:ownerId -->
 <%- include('../partials/footer.ejs') %>
