@@ -2,13 +2,13 @@ export default class MyFetch {
   static baseUrl = '/api/blog';
   static ownersUrl = '/api/owners';
 
-  static searchOwners(searchTermJson, successCallback) {
+  static searchOwners(searchTermValue, successCallback) {
     fetch(`${MyFetch.ownersUrl}/search`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
       },
-      body: searchTermJson,
+      body: JSON.stringify({ search: searchTermValue }),
     })
       .then((resp) => resp.json())
       .then((dataInJs) => successCallback(dataInJs))

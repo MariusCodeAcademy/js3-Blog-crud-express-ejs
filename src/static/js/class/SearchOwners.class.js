@@ -9,7 +9,6 @@ class SearchOwners {
   }
 
   clearListEl() {
-    console.log('clearListEl');
     this.listEl.innerHTML = '';
   }
 

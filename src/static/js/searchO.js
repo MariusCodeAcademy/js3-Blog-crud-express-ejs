@@ -8,27 +8,10 @@ const ownersListEl = document.getElementById('owners-list');
 
 searchOFormEl.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log('submit event');
 
-  const userInput = searchInputEl.value;
-  const userInputJson = JSON.stringify({ search: userInput });
-
-  MyFetch.searchOwners(userInputJson, (ats) => {
-    // istrinti esamus elementus sarase
-    new SearchOwners(ats.found, ownersListEl);
-    console.log(' ats', ats);
-    // sugeneruoti sarasa is to ka gavom ats
-  });
+  MyFetch.searchOwners(searchInputEl.value, (ats) => new SearchOwners(ats.found, ownersListEl));
 });
 
 searchInputEl.addEventListener('input', () => {
-  const userInput = searchInputEl.value;
-  const userInputJson = JSON.stringify({ search: userInput });
-
-  MyFetch.searchOwners(userInputJson, (ats) => {
-    // istrinti esamus elementus sarase
-    new SearchOwners(ats.found, ownersListEl);
-    console.log(' ats', ats);
-    // sugeneruoti sarasa is to ka gavom ats
-  });
+  MyFetch.searchOwners(searchInputEl.value, (ats) => new SearchOwners(ats.found, ownersListEl));
 });
