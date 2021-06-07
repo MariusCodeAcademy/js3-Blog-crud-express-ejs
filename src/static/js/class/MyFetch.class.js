@@ -1,7 +1,19 @@
 export default class MyFetch {
   static baseUrl = '/api/blog';
+  static ownersUrl = '/api/owners';
 
-  constructor() {}
+  static searchOwners(searchTermJson, successCallback) {
+    fetch(`${MyFetch.ownersUrl}/search`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: searchTermJson,
+    })
+      .then((resp) => resp.json())
+      .then((dataInJs) => successCallback(dataInJs))
+      .catch((err) => console.error(err.message));
+  }
 
   static async getPosts() {
     const res = await fetch(MyFetch.baseUrl);
