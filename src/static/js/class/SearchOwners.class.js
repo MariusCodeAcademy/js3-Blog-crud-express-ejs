@@ -5,6 +5,7 @@ class SearchOwners {
 
     this.clearListEl();
     this.generateOwnersList();
+    // this.appendListToDom();
   }
 
   clearListEl() {
@@ -12,22 +13,32 @@ class SearchOwners {
     this.listEl.innerHTML = '';
   }
 
-  generateOneListEl({ name, email, updateAt, _id }) {
+  generateOneListEl({ name, email, updatedAt, _id }) {
     const liEl = document.createElement('li');
     liEl.className = 'list-group-item d-flex justify-content-between';
 
     const liInner = `
       <div>
-        Jane Other , email: jane@doe.lt <br>
-        <small class="text-muted">04/06/2021, 14:42:24 </small>
+        ${name} , email: ${email} <br>
+        <small class="text-muted">${updatedAt.toLocaleString()} </small>
       </div>
       <div>
-        <a href="/owners/single/60ba11a087c6c428d1621ef5 " class="btn btn-success">View</a>
-        <form action="/owners/delete/60ba11a087c6c428d1621ef5" method="POST">
+        <a href="/owners/single/${_id} " class="btn btn-success">View</a>
+        <form action="/owners/delete/${_id}" method="POST">
           <button class="btn btn-danger" type="submit">Delete me</button>
         </form>
       </div>
     `;
+
+    liEl.innerHTML = liInner;
+
+    return liEl;
+  }
+
+  generateOwnersList() {
+    this.ownersFound.forEach((o) => {
+      this.listEl.append(this.generateOneListEl(o));
+    });
   }
 }
 
