@@ -8,7 +8,7 @@
 
   <%- include('_searchForm') %>
 
-  <ol class="list-group">
+  <ol id="owners-list" class="list-group">
     <% if (owners.length > 0 ) { %> <% owners.forEach(({ _id, name, email, updatedAt: date}) => { %>
     <li class="list-group-item d-flex justify-content-between">
       <div>
