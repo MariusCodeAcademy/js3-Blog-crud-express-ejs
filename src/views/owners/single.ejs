@@ -12,7 +12,9 @@
 <h5 class="my-3">Owners properties</h5>
 
 <ul class="list-group">
-  <li class="list-group-item">Number street, town, </li>
+  <% houses.forEach(({nr, street, town}) => { %>
+  <li class="list-group-item"><%= `${nr} ${street}, ${town}` %> </li>
+  <% }) %>
 </ul>
 
 <%- include('../partials/footer.ejs') %>
