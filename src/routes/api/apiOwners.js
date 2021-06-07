@@ -13,6 +13,7 @@ router.post('/search', (req, res) => {
   const searchRegex = new RegExp(searchTerm, 'i');
 
   Owner.find({ name: searchRegex })
+    .sort({ updatedAt: -1 })
     .then((found) => {
       res.json({ searchFor: req.body.search, found });
     })

@@ -15,11 +15,11 @@ class SearchOwners {
   generateOneListEl({ name, email, updatedAt, _id }) {
     const liEl = document.createElement('li');
     liEl.className = 'list-group-item d-flex justify-content-between';
-
+    const date = new Date(updatedAt);
     const liInner = `
       <div>
         ${name} , email: ${email} <br>
-        <small class="text-muted">${updatedAt.toLocaleString()} </small>
+        <small class="text-muted">${date.toLocaleString()} </small>
       </div>
       <div>
         <a href="/owners/single/${_id} " class="btn btn-success">View</a>
