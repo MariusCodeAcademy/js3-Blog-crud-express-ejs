@@ -10,6 +10,7 @@ const PORT = 3000;
 const pageRoutes = require('./routes/pagesRoutes');
 const ownersRoutes = require('./routes/ownersRoutes');
 const blogRoutes = require('./routes/blogRoutes');
+const houseRoutes = require('./routes/houseRoutes');
 const apiRoutes = require('./routes/api/apiRoutes');
 const apiOwners = require('./routes/api/apiOwners');
 
@@ -35,6 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', pageRoutes);
 app.use('/owners', ownersRoutes);
 app.use('/blog', blogRoutes);
+app.use('/house', houseRoutes);
 
 const staticPath = path.join(__dirname, 'static');
 // statine direktorija, css, js, img ir kt statiniam failam
