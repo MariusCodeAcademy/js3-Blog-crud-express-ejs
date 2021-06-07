@@ -9,6 +9,7 @@
 <a class="btn btn-info" href="/owners/edit/<%= found._id %>">Edit this owner</a>
 <a class="btn btn-primary" href="/house/new/<%= found._id %>">Add house to this owner</a>
 
+<% if (houses.length > 0) { %>
 <h5 class="my-3">Owners properties</h5>
 
 <ul class="list-group">
@@ -16,5 +17,4 @@
   <li class="list-group-item"><%= `${nr} ${street}, ${town}` %> -- <%= id %> </li>
   <% }) %>
 </ul>
-
-<%- include('../partials/footer.ejs') %>
+<% } %> <%- include('../partials/footer.ejs') %>
