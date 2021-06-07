@@ -12,8 +12,8 @@
 <h5 class="my-3">Owners properties</h5>
 
 <ul class="list-group">
-  <% houses.forEach(({nr, street, town}) => { %>
-  <li class="list-group-item"><%= `${nr} ${street}, ${town}` %> </li>
+  <% houses.forEach(({ownersId: id, nr, street, town}) => { %>
+  <li class="list-group-item"><%= `${nr} ${street}, ${town}` %> -- <%= id %> </li>
   <% }) %>
 </ul>
 

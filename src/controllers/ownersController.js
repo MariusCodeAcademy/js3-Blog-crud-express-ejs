@@ -23,13 +23,18 @@ const owners_index = (req, res) => {
 
 const owners_single = (req, res) => {
   // gauti namus
-  House.find()
+  const currentOwnerId = req.params.id;
+
+  // ownersId === currentOwnerId atrenkam tik
+  House.find({ ownersId: currentOwnerId })
+    .exec()
     .then((found) => findOwner(found))
     .catch((err) => console.error(err));
+
   // find by id
   function findOwner(houses) {
     console.log(' houses', houses);
-    Owner.findById(req.params.id)
+    Owner.findById(currentOwnerId)
       .then((found) => {
         res.render('owners/single', {
           title: 'Single',
